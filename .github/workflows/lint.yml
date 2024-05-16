@@ -15,12 +15,15 @@ permissions:
 
 jobs:
   format:
+    strategy:
+      matrix:
+        go: [stable, oldstable]
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.20"
+          go-version: ${{ matrix.go }}
 
       - name: Clone repository
         uses: actions/checkout@v4
@@ -40,7 +43,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.20"
+          go-version: stable
 
       - name: Clone repository
         uses: actions/checkout@v4
@@ -58,7 +61,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.20"
+          go-version: stable
 
       - name: Clone repository
         uses: actions/checkout@v4
